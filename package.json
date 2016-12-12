@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-sanada-camera",
+  "version": "0.0.1",
+  "description": "A camera that can be shot with Yukimura Sanada",
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "jshint bin",
+    "build": "node bin/execBuild --target all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitdev01/cordova-plugin-sanada-camera.git"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "hitdev01",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hitdev01/cordova-plugin-sanada-camera/issues"
+  },
+  "homepage": "https://github.com/hitdev01/cordova-plugin-sanada-camera#readme",
+  "devDependencies": {
+    "commander": "^2.9.0",
+    "fs-extra": "^0.30.0",
+    "jshint": "^2.6.0",
+    "q": "^1.4.1",
+    "readdirp": "^2.1.0"
+  }
+}

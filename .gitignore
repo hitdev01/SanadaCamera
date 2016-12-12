@@ -1,12 +1,6 @@
 *.iml
 .gradle
-/src/android/local.properties
-/src/android/gradle.properties
-/src/android/.idea/workspace.xml
-/src/android/.idea/libraries
 .DS_Store
-/src/android/build
 /dist
-/src/android/.externalNativeBuild
 /.template/plugin.ejs
 node_modules

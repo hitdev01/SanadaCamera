@@ -7,6 +7,7 @@ var build = (function() {
   var BASE_DIR = nodePath.join(__dirname, '..', '..');
   var OUTPUT_DIR = nodePath.join(BASE_DIR, 'dist');
   var ANDROID_DIR = nodePath.join(BASE_DIR, 'src', 'android');
+  var PLUGINS_DIR = nodePath.join(BASE_DIR, 'src', 'www');
 
   function build() {
   }
@@ -68,6 +69,20 @@ var build = (function() {
     d.resolve();
   };
 
+  var copyPluginJs = function() {
+    var d = Q.defer();
+    console.log('copy cordova plugin JavaScript file');
+    var outDir = nodePath.join(OUTPUT_DIR, 'www');
+    readdirp({ root: PLUGINS_DIR, fileFilter: '*.js' })
+    .on('data', function (entry) {
+      var destPath = nodePath.join(outDir, entry.name);
+      fs.copySync(entry.fullPath, destPath);
+    });
+
+    d.resolve();
+  };
+
+
   var copyPluginXml = function() {
     var d = Q.defer();
     console.log('copy plugin.xml');
@@ -83,6 +98,7 @@ var build = (function() {
       .then(clean)
       .then(copyAndroid)
       .then(copyiOS)
+      .then(copyPluginJs)
       .then(copyPluginXml)
       .done();
     },
@@ -93,6 +109,7 @@ var build = (function() {
       Q.when()
       .then(clean)
       .then(copyAndroid)
+      .then(copyPluginJs)
       .then(copyPluginXml)
       .done();
     },
@@ -100,6 +117,7 @@ var build = (function() {
       Q.when()
       .then(clean)
       .then(copyiOS)
+      .then(copyPluginJs)
       .then(copyPluginXml)
       .done();
     }

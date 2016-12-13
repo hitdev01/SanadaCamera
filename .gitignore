@@ -2,5 +2,4 @@
 .gradle
 .DS_Store
 /dist
-/.template/plugin.ejs
 node_modules

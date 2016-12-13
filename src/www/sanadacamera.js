@@ -8,7 +8,7 @@ var exec = require('cordova/exec');
 var sanadaCamera = {
     start: function(successCallback, errorCallback) {
         var action = 'start';
-        exec(successCallback, errorCallback, "SanadaCamera", action, []);
+        exec(successCallback, errorCallback, "CameraPlugin", action, []);
     }
 };
 

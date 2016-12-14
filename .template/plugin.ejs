@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="<%= COMMON.ID %>"
+    version="<%= COMMON.VERSION %>">
+
+    <name><%= COMMON.NAME %></name>
+    <description><%= COMMON.DESCRIPTION %></description>
+    <license><%= COMMON.LICENSE %></license>
+    <keywords><%= COMMON.KEYWORDS %></keywords>
+
+    <!-- Cordova JS Module -->
+    <js-module src="<%= COMMON.JS_MODULE.path %>" name="<%= COMMON.JS_MODULE.name %>">
+        <clobbers target="<%= COMMON.JS_MODULE.target %>" />
+    </js-module>
+
+    <% if (ANDROID) { %>
+    <!-- android -->
+    <platform name="android">
+        <!-- config.xml -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="<%= ANDROID.NAME %>">
+                <param name="android-package" value="<%= ANDROID.ANDROID_PACKAGE %>"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <!-- AndroidManifest.xml -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+          <% for (var i = 0; i < ANDROID.USERS_FEATURES.length; i++) { %><uses-feature android:name="<%= ANDROID.USERS_FEATURES[i].name %>" />
+          <% } %>
+          <% for (var i = 0; i < ANDROID.USERS_PERMISSIONS.length; i++) { %><uses-permission android:name="<%= ANDROID.USERS_PERMISSIONS[i].name %>" />
+          <% } %>
+        </config-file>
+        <!-- source file -->
+        <% for (var i = 0; i < ANDROID.SOURCE_FILES.length; i++) { %><source-file src="<%= ANDROID.SOURCE_FILES[i].src %>" target-dir="<%= ANDROID.SOURCE_FILES[i].targetdir %>" />
+        <% } %>
+    </platform>
+    <% } %>
+    <% if (IOS) { %>
+      <!-- ios -->
+      <platform name="ios">
+      </platform>
+    <% } %>
+
+</plugin>
